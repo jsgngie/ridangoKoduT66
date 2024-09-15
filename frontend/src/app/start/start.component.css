@@ -1,0 +1,121 @@
+.start-screen-container {
+    display: flex;
+    height: 100vh;
+}
+
+input {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    text-align: center;
+    border: solid 1px black;
+    border-radius: 5px;
+}
+
+.game-title {
+    font-size: 4vw;
+    border-bottom: solid 2px black
+}
+
+.splash {
+    width: 35vw;
+    height: 105vh;
+    min-height: 1000px;
+    margin: -10px -10px 0 auto;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    width: 65vw;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+    border-right: solid 1px black;
+}
+
+.input-container {
+    display: flex;
+    width: 20vw;
+    flex-direction: column;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    14% { transform: translateX(-10px); }
+    28% { transform: translateX(0); }
+    42% { transform: translateX(10px); }
+    56% { transform: translateX(0); }
+    70% { transform: translateX(-10px); }
+    10% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.4s;
+}
+
+/* CSS */
+.start {
+    background-color: #e49cae;
+    border: 0 solid #E5E7EB;
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 2.5rem;
+    font-weight: 700;
+    justify-content: center;
+    line-height: 4rem;
+    padding: .75rem 1.65rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none #000000 solid;
+    text-decoration-thickness: auto;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    cursor: pointer;
+    transform: rotate(-2deg);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: auto;
+    margin-bottom: 30vh;
+}
+
+.start:active {
+    background-color: #e4879e;
+}
+
+.start:focus {
+  outline: 0;
+}
+
+.start:after {
+  content: '';
+  position: absolute;
+  border: 1px solid #000000;
+  bottom: 4px;
+  left: 4px;
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+}
+
+.start:hover:after {
+  bottom: 2px;
+  left: 2px;
+}
+
+@media (min-width: 768px) {
+  .start {
+    padding: .75rem 3rem;
+  }
+}
+
+.name-input {
+  padding: 1.5rem;
+  font-size: 30px;
+  background: linear-gradient(to bottom, #fff, #fdabb0);
+  border-radius: 3px;
+  border: solid 1px white;
+}

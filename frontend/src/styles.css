@@ -1,0 +1,10 @@
+@font-face {
+    font-family: raleway;
+    src: url(../public/assets/fonts/Raleway-VariableFont_wght.ttf) format("truetype");
+}
+
+body {
+    font-family: raleway;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #92d4f1, #27a2d7);
+}
