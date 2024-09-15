@@ -1,10 +1,10 @@
 <div class="start-screen-container">
-    <div class="title-container">
+    <div class="title-container" [@hideInput]="gameState" (@hideInput.done)="onAnimationFinished($event)">
         <h1 class="game-title">Cocktail Conundrum</h1>
         <div class="input-container">
             <input type="text" [(ngModel)]="playerName" id="name" placeholder="Enter your name" #nameInput [ngClass]="{'shake': isShaking}" class="name-input">
         </div>
         <button (click)="startGame()" class="start">Start</button>
     </div>
-    <img src="assets/images/start-splash.jpg" alt="Oops something happened to the start splash" class="splash">
+    <img src="assets/images/start-splash.jpg" alt="Oops something happened to the start splash" class="splash" [@hideSplash]="gameState">
 </div>

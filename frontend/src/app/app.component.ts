@@ -1,13 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { ApiService } from './api.service';
 
 @Component({
-  selector: 'app-root',   // Adjust the selector as needed
-  templateUrl: './app.component.html',  // Your HTML template file
-  styleUrls: ['./app.component.css']     // Your CSS file
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public message: string = '';  // Property to hold the fetched string
-
+  message: string = '';
+  @ViewChild('backgroundMusic') backgroundMusic!: ElementRef<HTMLAudioElement>;
+  isSpinning: boolean = true;
+  
   constructor(private apiService: ApiService) {}
+
+  ngAfterViewInit() {
+    this.backgroundMusic.nativeElement.play();
+  }
+
+  playMusic() {
+    if (this.backgroundMusic.nativeElement.paused) {
+      this.backgroundMusic.nativeElement.play();
+      this.isSpinning = true;
+    } else {
+      this.backgroundMusic.nativeElement.pause();
+      this.isSpinning = false;
+    }
+  }
 }

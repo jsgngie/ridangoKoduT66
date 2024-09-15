@@ -8,3 +8,11 @@ body {
     overflow: hidden;
     background: linear-gradient(to bottom, #92d4f1, #27a2d7);
 }
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}

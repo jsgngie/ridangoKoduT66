@@ -1,1 +1,3 @@
-<app-start></app-start>
+<router-outlet></router-outlet>
+<audio #backgroundMusic src="assets/sound/background-music.mp3" preload="auto" loop></audio>
+<img src="assets/images/music-435.svg" alt="Oops could not find music icon :/" class="musicIcon" [ngClass]="{'spin': isSpinning}" (click)="playMusic()">

@@ -20,7 +20,6 @@ input {
 .splash {
     width: 35vw;
     height: 105vh;
-    min-height: 1000px;
     margin: -10px -10px 0 auto;
 }
 
@@ -54,7 +53,6 @@ input {
     animation: shake 0.4s;
 }
 
-/* CSS */
 .start {
     background-color: #e49cae;
     border: 0 solid #E5E7EB;
