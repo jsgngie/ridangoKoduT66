@@ -1,0 +1,24 @@
+package com.ridango.game.data.service;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+@Service
+public class ApiService {
+    private final RestTemplate restTemplate;
+
+    @Value("${cocktail.api.url}")
+    private String apiUrl;
+
+    public ApiService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
+    public JsonNode fetchDrinksFromApiAllAlphabet() {
+        String url = apiUrl + "search.php?f=a";
+        return this.restTemplate.getForObject(url, JsonNode.class);
+    }
+}
