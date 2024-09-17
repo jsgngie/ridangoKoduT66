@@ -1,3 +1,27 @@
 .game-container {
     height: 100vh;
 }
+
+.guessed-word {
+    text-align: center;
+    font-size: 5vw;
+    margin-top: 20vh;
+}
+
+.what-could-it-be {
+    transform: rotate(25deg);
+    position: absolute;
+    top: 50px;
+    right: 25px;
+    font-size: 2vw;
+}
+
+#drink-guess {
+    width: 60vw;
+    font-size: 3vw;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;
+}

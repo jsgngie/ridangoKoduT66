@@ -7,14 +7,13 @@ import { ApiService } from './api.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  message: string = '';
   @ViewChild('backgroundMusic') backgroundMusic!: ElementRef<HTMLAudioElement>;
-  isSpinning: boolean = true;
+  isSpinning: boolean = false;
   
   constructor(private apiService: ApiService) {}
 
-  ngAfterViewInit() {
-    this.backgroundMusic.nativeElement.play();
+  ngOnInit() {
+    this.apiService.setupGame();
   }
 
   playMusic() {
@@ -26,4 +25,6 @@ export class AppComponent {
       this.isSpinning = false;
     }
   }
+  
+
 }

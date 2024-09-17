@@ -1,29 +1,53 @@
 package com.ridango.game.data.controllers;
 
 import com.ridango.game.data.service.DrinkService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ridango.game.logic.GameLogic;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/drinks")
+@RequiredArgsConstructor
+@RequestMapping("/api")
 public class DrinkController {
 
     private final DrinkService drinkService;
 
-    public DrinkController(DrinkService drinkService) {
-        this.drinkService = drinkService;
+    private final GameLogic gameLogic;
+
+    @GetMapping("/setup")
+    public Boolean fetchAndSaveDrinks() {
+        drinkService.populateDatabase();
+        try {
+            gameLogic.getCocktail(); // if no cocktails were found
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
-    @GetMapping("/setup/fetch")
-    public String fetchAndSaveDrinks() {
-        drinkService.saveDrinks();
-        return "Drinks data has been saved successfully!";
+    @GetMapping("/guess/{drinkName}")
+    public boolean guess(@PathVariable String drinkName) {
+        // Parses guess.
+        return gameLogic.parseGuess(drinkName);
     }
 
-    @GetMapping("/test")
-    public String fetchRandom() {
-
-        return "Fetched random successfully.";
+    @GetMapping("/guess/remaining")
+    public int getGuess() {
+        // Returns the amount of guesses left
+        return gameLogic.getNumberOfGuesses();
     }
+
+    @GetMapping("/hidden")
+    public String getHidden() {
+        // Returns string with hidden chars.
+        return gameLogic.getHiddenString().toString();
+    }
+
+    @GetMapping("/highscore")
+    public int getScore() {
+        // Returns score
+        return gameLogic.getHighScore();
+    }
+
+    //post score here
 }

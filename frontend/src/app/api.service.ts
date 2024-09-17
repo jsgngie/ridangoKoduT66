@@ -11,8 +11,24 @@ export class ApiService {
   constructor(
     private http: HttpClient
   ) { }
+    
+    setupGame(): void {
+      
+      this.http.get<boolean>(`${this.backendUrl}/setup`).subscribe({
+        next: (response: boolean) => {
+          if (response) {
+            console.log("Setup was a success...")
+          } else {
+            console.log("Setup failed...")
+          }
+        },
+        error: (error) => {
+          console.error('API call error:', error);
+        }}
+      );
+  }
 
-  getHello(): Observable<string> {
-    return this.http.get<string>(this.backendUrl+'/hello', { responseType: 'text' as 'json' })
+  getHiddenString(): Observable<string> {
+    return this.http.get<string>(`${this.backendUrl}/hidden`, {responseType: 'text' as 'json'})
   }
 }

@@ -7,6 +7,7 @@ import { StartComponent } from './start/start.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
+import { ApiService } from './api.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { GameComponent } from './game/game.component';
   ],
   providers: [
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
 })

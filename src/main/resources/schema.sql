@@ -10,7 +10,8 @@ CREATE TABLE IF NOT EXISTS drinks(
     strDrink varchar(256),
     strGlass varchar(256),
     strInstructions varchar(1000),
-    strDrinkThumb varchar(256)
+    strDrinkThumb varchar(256),
+    isGuessed BOOLEAN
 );
 
 CREATE TABLE IF NOT EXISTS ingredients(

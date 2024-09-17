@@ -4,25 +4,22 @@ import com.ridango.game.data.entities.Drink;
 import com.ridango.game.data.entities.Ingredient;
 import com.ridango.game.data.repository.DrinkRepository;
 import com.ridango.game.data.repository.IngredientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.JsonNode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class DrinkService {
 
     private final ApiService apiService;
     private final DrinkRepository drinkRepository;
     private final IngredientRepository ingredientRepository;
 
-    public DrinkService(ApiService apiService, DrinkRepository drinkRepository, IngredientRepository ingredientRepository) {
-        this.apiService = apiService;
-        this.drinkRepository = drinkRepository;
-        this.ingredientRepository = ingredientRepository;
-    }
-
-    public void saveDrinks() {
+    public void populateDatabase() {
         JsonNode response = apiService.fetchDrinksFromApiAllAlphabet();
         JsonNode drinks = response.get("drinks");
 
@@ -51,5 +48,14 @@ public class DrinkService {
 
 
         }
+    }
+
+    public Drink getRandom() {
+        Optional<Drink> drink = drinkRepository.fetchRandomDrink();
+        return drink.orElse(null);
+    }
+
+    public void markGuessed(Long id) {
+        drinkRepository.markAsGuessed(id);
     }
 }
