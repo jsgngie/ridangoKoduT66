@@ -24,7 +24,7 @@ public class Drink {
     private String strDrink;
     private String strGlass;
 
-    @Column(length = 1000)
+    @Column(length = 5000)
     private String strInstructions;
     private String strDrinkThumb;
 

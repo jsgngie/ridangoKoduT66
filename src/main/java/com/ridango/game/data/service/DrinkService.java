@@ -20,33 +20,33 @@ public class DrinkService {
     private final IngredientRepository ingredientRepository;
 
     public void populateDatabase() {
-        JsonNode response = apiService.fetchDrinksFromApiAllAlphabet();
-        JsonNode drinks = response.get("drinks");
+        List<JsonNode> allDrinks = apiService.fetchDrinksFromApiAllAlphabet();
+        for (JsonNode response : allDrinks) {
+            JsonNode drinks = response.get("drinks");
 
-        if (drinks != null) {
-            for (JsonNode drinkNode : drinks) {
-                Drink drink = new Drink(drinkNode.get("idDrink").asLong(), drinkNode.get("strDrink").asText(),
-                                        drinkNode.get("strGlass").asText(), drinkNode.get("strInstructions").asText(),
+            if (drinks != null) {
+                for (JsonNode drinkNode : drinks) {
+                    Drink drink = new Drink(drinkNode.get("idDrink").asLong(), drinkNode.get("strDrink").asText(),
+                            drinkNode.get("strGlass").asText(), drinkNode.get("strInstructions").asText(),
                             drinkNode.get("strDrinkThumb").asText() + "/preview");
 
-                Drink savedDrink = drinkRepository.save(drink);
+                    Drink savedDrink = drinkRepository.save(drink);
 
-                List<Ingredient> ingredients = new ArrayList<>();
-                for (int i = 1; i <= 15; i++) {
-                    String ingredientKey = "strIngredient" + i;
-                    String measureKey = "strMeasure" + i;
+                    List<Ingredient> ingredients = new ArrayList<>();
+                    for (int i = 1; i <= 15; i++) {
+                        String ingredientKey = "strIngredient" + i;
+                        String measureKey = "strMeasure" + i;
 
-                    if (drinkNode.has(ingredientKey) && !drinkNode.get(ingredientKey).isNull()) {
-                        Ingredient ingredient = new Ingredient(savedDrink, drinkNode.get(ingredientKey).asText(),
-                                                               drinkNode.get(measureKey).asText());
-                        ingredients.add(ingredient);
+                        if (drinkNode.has(ingredientKey) && !drinkNode.get(ingredientKey).isNull()) {
+                            Ingredient ingredient = new Ingredient(savedDrink, drinkNode.get(ingredientKey).asText(),
+                                    drinkNode.get(measureKey).asText());
+                            ingredients.add(ingredient);
+                        }
                     }
+
+                    ingredientRepository.saveAll(ingredients);
                 }
-
-                ingredientRepository.saveAll(ingredients);
             }
-
-
         }
     }
 
@@ -58,4 +58,6 @@ public class DrinkService {
     public void markGuessed(Long id) {
         drinkRepository.markAsGuessed(id);
     }
+
+    public void cleanGuessed() { drinkRepository.cleanGuessed(); }
 }

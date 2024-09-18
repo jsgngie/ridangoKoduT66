@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { trigger, state, style, animate, transition, AnimationEvent} from '@angular/animations';
+import { trigger, state, style, animate, transition, keyframes, AnimationEvent } from '@angular/animations';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',
-  styleUrl: './start.component.css',
+  styleUrls: ['./start.component.css'],
   animations: [
     trigger('hideInput', [
       state('inactive', style({
@@ -32,6 +33,22 @@ import { trigger, state, style, animate, transition, AnimationEvent} from '@angu
       transition('inactive => active', [
         animate('500ms ease-in')
       ])
+    ]),
+    trigger('shakingAnimation', [
+      transition('false => true', [
+        animate('500ms ease-in-out', keyframes([
+          style({ transform: 'translateX(-10px)', offset: 0.1 }),
+          style({ transform: 'translateX(10px)', offset: 0.2 }),
+          style({ transform: 'translateX(-10px)', offset: 0.3 }),
+          style({ transform: 'translateX(10px)', offset: 0.4 }),
+          style({ transform: 'translateX(-10px)', offset: 0.5 }),
+          style({ transform: 'translateX(10px)', offset: 0.6 }),
+          style({ transform: 'translateX(-10px)', offset: 0.7 }),
+          style({ transform: 'translateX(10px)', offset: 0.8 }),
+          style({ transform: 'translateX(-5px)', offset: 0.9 }),
+          style({ transform: 'translateX(0)', offset: 1.0 })
+        ]))
+      ])
     ])
   ]
 })
@@ -40,20 +57,25 @@ export class StartComponent {
   isShaking: boolean = false;
   gameState: string = 'inactive';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private apiService: ApiService) {}
 
   startGame() {
     if (this.playerName) {
       this.isShaking = false;
-      this.gameState = 'active'
+      this.apiService.postName(this.playerName);
+      this.gameState = 'active';
     } else {
-      this.isShaking = true;
+      this.isShaking = true; // Trigger the shake animation
     }
   }
 
   onAnimationFinished(event: AnimationEvent) {
-    if (event && this.gameState == 'active') {
+    if (event && this.gameState === 'active') {
       this.router.navigate(['/game']);
     }
+  }
+
+  onShakeFinished(event: AnimationEvent) {
+    this.isShaking = false;
   }
 }

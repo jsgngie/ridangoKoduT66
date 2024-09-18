@@ -4,7 +4,7 @@
 
 .guessed-word {
     text-align: center;
-    font-size: 5vw;
+    font-size: 3vw;
     margin-top: 20vh;
 }
 
@@ -17,11 +17,53 @@
 }
 
 #drink-guess {
-    width: 60vw;
-    font-size: 3vw;
+    width: 50vw;
+    height: 5vh;
+    font-size: 2vw;
 }
 
 .input-container {
     display: flex;
     justify-content: center;
+}
+
+.remaining-guesses {
+    font-size: 2vw;
+    text-align: center;
+}
+
+.highscore {
+    text-align: center;
+    font-size: 1.5vw;
+    margin-top: 2vw;
+}
+
+.cocktail-instruction-container {
+    width: 20vw;
+    height: fit-content;
+    max-height: 20vh;
+    padding: 10px 20px 20px 20px;
+    border-radius: 25px;
+    border: solid black 1px;
+    background: linear-gradient( to bottom, #eef7fb, #4093b7);
+    overflow: auto;
+    margin-left: 50px;
+}
+
+.instruction-header {
+    text-align: center;
+}
+
+.content-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 0 50px;
+}
+
+.back {
+    position: absolute;
+    height: 30px;
+    top: 20px; 
+    right: 20px;
 }

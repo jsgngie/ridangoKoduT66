@@ -2,7 +2,8 @@
     <div class="title-container" [@hideInput]="gameState" (@hideInput.done)="onAnimationFinished($event)">
         <h1 class="game-title">Cocktail Conundrum</h1>
         <div class="input-container">
-            <input type="text" [(ngModel)]="playerName" id="name" placeholder="Enter your name" #nameInput [ngClass]="{'shake': isShaking}" class="name-input">
+            <input type="text" [(ngModel)]="playerName" id="name" placeholder="Enter your name" #nameInput class="name-input" 
+            [@shakingAnimation]="isShaking" (@shakingAnimation.done)="onShakeFinished($event)">
         </div>
         <button (click)="startGame()" class="start">Start</button>
     </div>

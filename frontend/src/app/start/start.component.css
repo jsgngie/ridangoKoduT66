@@ -30,20 +30,6 @@
     flex-direction: column;
 }
 
-@keyframes shake {
-    0% { transform: translateX(0); }
-    14% { transform: translateX(-10px); }
-    28% { transform: translateX(0); }
-    42% { transform: translateX(10px); }
-    56% { transform: translateX(0); }
-    70% { transform: translateX(-10px); }
-    10% { transform: translateX(0); }
-}
-
-.shake {
-    animation: shake 0.4s;
-}
-
 .start {
     background-color: #e49cae;
     border: 0 solid #E5E7EB;

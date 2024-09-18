@@ -1,7 +1,21 @@
 <div class="game-container" [@fadeInAnimation]>
+    <img src="assets/images/back-icon.png" alt="back" (click)="endGame()" class="back"/>
+    <div>
+        <p class="remaining-guesses"><b>{{remainingGuesses}}</b> guesses remaining!</p>
+        <div class="highscore">Score <b>{{highScore}}</b> points</div>
+    </div>
     <div class="guessed-word">{{hiddenString}}</div>
     <p class="what-could-it-be">What could it be?</p>
-    <div class="input-container">
-        <input type="text" placeholder="Guess the drink..." id="drink-guess"/>
+    <div class="content-container">
+        <div class="input-container">
+            <input type="text" placeholder="Guess the drink..." id="drink-guess" (keydown.enter)="guess(drinkGuess.value, drinkGuess)" #drinkGuess
+            [@shakingAnimation]="isShaking" (@shakingAnimation.done)="onShakeFinished($event)"/>
+        </div>
+        <div class="cocktail-instruction-container">
+            <h3 class="instruction-header">Cocktail preparation instructions</h3>
+            <div>
+                {{this.instructions}}
+            </div>
+        </div>
     </div>
 </div>

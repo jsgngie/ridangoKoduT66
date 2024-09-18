@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS drinks(
     drinkId BIGINT,
     strDrink varchar(256),
     strGlass varchar(256),
-    strInstructions varchar(1000),
+    strInstructions varchar(5000),
     strDrinkThumb varchar(256),
     isGuessed BOOLEAN
 );

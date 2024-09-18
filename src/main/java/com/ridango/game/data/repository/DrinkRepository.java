@@ -20,4 +20,9 @@ public interface DrinkRepository extends JpaRepository<Drink, Long> {
     @Query("UPDATE Drink d SET d.isGuessed = true WHERE d.id = :id")
     void markAsGuessed(@Param("id") Long id);
 
+    @Modifying
+    @Transactional
+    @Query("UPDATE Drink d SET d.isGuessed = false WHERE d.isGuessed = true")
+    void cleanGuessed();
+
 }

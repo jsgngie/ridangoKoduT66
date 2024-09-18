@@ -1,0 +1,6 @@
+if database is populated dont populate...
+pilt game screenile
+post guess, võrdle, uuenda
+kui database on populated siis mitte populatida
+kõik joogid andmebaasi
+andmebaas failipõhiseks.

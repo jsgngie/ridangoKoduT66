@@ -5,10 +5,13 @@ import com.ridango.game.logic.GameLogic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLOutput;
+import java.util.concurrent.ExecutionException;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
-public class DrinkController {
+public class GameController {
 
     private final DrinkService drinkService;
 
@@ -16,16 +19,28 @@ public class DrinkController {
 
     @GetMapping("/setup")
     public Boolean fetchAndSaveDrinks() {
-        drinkService.populateDatabase();
         try {
-            gameLogic.getCocktail(); // if no cocktails were found
+            //Check if game is already set up
+            gameLogic.getCocktail();
+            gameLogic.endGame(true); // End game just in case
+            return true;
         } catch (Exception e) {
-            return false;
+            drinkService.populateDatabase();
+            try {
+                gameLogic.getCocktail();
+            } catch (Exception e2) {
+                return false;
+            }
+            return true;
         }
-        return true;
     }
 
-    @GetMapping("/guess/{drinkName}")
+    @PostMapping("/setup/{name}")
+    public void setName(@PathVariable String name) {
+        gameLogic.setName(name);
+    }
+
+    @PostMapping("/guess/{drinkName}")
     public boolean guess(@PathVariable String drinkName) {
         // Parses guess.
         return gameLogic.parseGuess(drinkName);
@@ -46,8 +61,16 @@ public class DrinkController {
     @GetMapping("/highscore")
     public int getScore() {
         // Returns score
-        return gameLogic.getHighScore();
+        return gameLogic.getHighScore().getScore();
     }
 
-    //post score here
+    @PostMapping("/end")
+    public void end() {
+        gameLogic.endGame(false);
+    }
+
+    @GetMapping("/instructions")
+    public String getInstructions() {
+        return gameLogic.getCurrentDrink().getStrInstructions();
+    }
 }
