@@ -9,10 +9,13 @@ import com.ridango.game.data.service.HighscoreService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Getter
+@Setter
 @Service
 public class GameLogic {
     @Getter private int numberOfGuesses = 5;

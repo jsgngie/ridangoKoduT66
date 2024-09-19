@@ -7,7 +7,7 @@ import { HighscoresComponent } from './highscores/highscores.component';
 const routes: Routes = [
   { path: '', component: StartComponent },
   { path: 'game', component: GameComponent },
-  { path: 'end', component: HighscoresComponent},
+  { path: 'highscores', component: HighscoresComponent},
   { path: '**', redirectTo: '' }
 ];
 

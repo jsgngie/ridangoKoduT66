@@ -149,7 +149,7 @@ export class GameComponent implements AfterViewInit {
 
   endGame() {
     this.apiService.endGame();
-    this.router.navigate(['/']);
+    this.router.navigate(['/highscores']);
   }
 
   selectImage() {

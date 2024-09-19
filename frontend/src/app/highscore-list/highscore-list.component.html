@@ -1,0 +1,7 @@
+<div *ngIf="highscores" class="highscore-container">
+    <ul class="highscore-list">
+        <li *ngFor="let highscore of highscores" class="highscore-item">
+            <span class="highscore-name">{{ highscore.name }}</span><span class="highscore-score">{{ highscore.score }}</span>
+        </li>
+    </ul>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-highscores',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './highscores.component.css'
 })
 export class HighscoresComponent {
+  constructor(private router: Router) {}
 
+  public routeToMain() {
+    this.router.navigate(["/"]);
+  }
 }

@@ -11,6 +11,7 @@ import { ApiService } from './api.service';
 import { HighscoresComponent } from './highscores/highscores.component';
 import { IngredientHintComponent } from './ingredient-hint/ingredient-hint.component';
 import { ImageHintComponent } from './image-hint/image-hint.component';
+import { HighscoreListComponent } from './highscore-list/highscore-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ImageHintComponent } from './image-hint/image-hint.component';
     GameComponent,
     HighscoresComponent,
     IngredientHintComponent,
-    ImageHintComponent
+    ImageHintComponent,
+    HighscoreListComponent
   ],
   imports: [
     BrowserModule,

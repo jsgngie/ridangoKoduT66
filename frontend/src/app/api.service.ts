@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ingredient } from './ingredient';
+import { Highscore} from './highscore'
 
 @Injectable({
   providedIn: 'root'
@@ -78,5 +79,9 @@ export class ApiService {
 
   getImage(): Observable<string> {
     return this.http.get<string>(`${this.backendUrl}/image`, {responseType: 'text' as 'json'})
+  }
+
+  getHighscores(): Observable<Highscore[]> {
+    return this.http.get<Highscore[]>(`${this.backendUrl}/all_highscores`)
   }
 }

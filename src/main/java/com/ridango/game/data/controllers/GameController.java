@@ -1,6 +1,7 @@
 package com.ridango.game.data.controllers;
 
 import com.ridango.game.data.entities.Drink;
+import com.ridango.game.data.entities.Highscore;
 import com.ridango.game.data.entities.Ingredient;
 import com.ridango.game.data.service.DrinkService;
 import com.ridango.game.data.service.HighscoreService;
@@ -78,6 +79,10 @@ public class GameController {
         gameLogic.endGame(false);
     }
 
+    @GetMapping("/all_highscores")
+    public List<Highscore> getHighScores() {
+        return highscoreService.getHighScores();
+    }
     @GetMapping("/instructions")
     public String getInstructions() {
         return gameLogic.getCurrentDrink().getStrInstructions();
