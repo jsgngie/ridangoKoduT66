@@ -1,11 +1,16 @@
 package com.ridango.game.data.controllers;
 
+import com.ridango.game.data.entities.Drink;
+import com.ridango.game.data.entities.Ingredient;
 import com.ridango.game.data.service.DrinkService;
+import com.ridango.game.data.service.HighscoreService;
+import com.ridango.game.data.service.IngredientService;
 import com.ridango.game.logic.GameLogic;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLOutput;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 @RestController
@@ -14,6 +19,10 @@ import java.util.concurrent.ExecutionException;
 public class GameController {
 
     private final DrinkService drinkService;
+
+    private final IngredientService ingredientService;
+
+    private final HighscoreService highscoreService;
 
     private final GameLogic gameLogic;
 
@@ -72,5 +81,24 @@ public class GameController {
     @GetMapping("/instructions")
     public String getInstructions() {
         return gameLogic.getCurrentDrink().getStrInstructions();
+    }
+
+    @GetMapping("/image")
+    public String getImageUrl() {
+        return gameLogic.getCurrentDrink().getStrDrinkThumb();
+    }
+
+    @GetMapping("/glass")
+    public String getGlass() {
+        return gameLogic.getCurrentDrink().getStrGlass();
+    }
+
+    @GetMapping("/ingredients")
+    public List<Ingredient> getIngredients() {
+        Drink currentDrink = gameLogic.getCurrentDrink();
+        if (currentDrink == null) {
+            return null;
+        }
+        return currentDrink.getIngredients();
     }
 }

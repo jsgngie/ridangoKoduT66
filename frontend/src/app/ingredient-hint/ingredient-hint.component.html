@@ -1,0 +1,8 @@
+<div *ngIf="ingredients" class="ingredient-container">
+    <h3>Cocktail ingredients</h3>
+    <ul>
+        <li *ngFor="let ingredient of ingredients">
+            {{ ingredient.name }}: {{ ingredient.measure }}
+        </li>
+    </ul>
+</div>

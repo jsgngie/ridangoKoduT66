@@ -19,15 +19,14 @@ public class Ingredient {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "drinkId")
-    private Drink drink;
+    @Column(name = "drinkId")
+    private Long drinkId;
 
     private String name;
     private String measure;
 
-    public Ingredient(Drink drink, String name, String measure) {
-        this.drink = drink;
+    public Ingredient(Long drinkId, String name, String measure) {
+        this.drinkId = drinkId;
         this.name = name;
         this.measure = measure;
     }

@@ -9,13 +9,29 @@
     <div class="content-container">
         <div class="input-container">
             <input type="text" placeholder="Guess the drink..." id="drink-guess" (keydown.enter)="guess(drinkGuess.value, drinkGuess)" #drinkGuess
-            [@shakingAnimation]="isShaking" (@shakingAnimation.done)="onShakeFinished($event)"/>
+            [@shakingAnimation]="isShaking" (@shakingAnimation.done)="onShakeFinished($event)" [disabled]="showHint"/>
         </div>
         <div class="cocktail-instruction-container">
             <h3 class="instruction-header">Cocktail preparation instructions</h3>
             <div>
                 {{this.instructions}}
             </div>
+        </div>
+    </div>
+
+    <div class="hint-container" *ngIf="showHint">
+        <p class="hint-header">You're in luck! Select a hint</p>
+        <div class="hint-buttons">
+            <button (click)="selectImage()">Image</button>
+            <button (click)="selectIngredients()">Ingredients</button>
+        </div>
+    </div>
+    <div class="hints">
+        <div class="image-hint" *ngIf="showImage">
+            <app-image-hint></app-image-hint>
+        </div>
+        <div class="ingredient-hint" *ngIf="showIngredients">
+            <app-ingredient-list></app-ingredient-list>
         </div>
     </div>
 </div>

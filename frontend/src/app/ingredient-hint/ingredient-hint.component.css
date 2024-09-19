@@ -1,0 +1,8 @@
+.ingredient-container {
+    width: fit-content;
+    height: fit-content;
+    background: linear-gradient( to bottom, #eef7fb, #4093b7);
+    border-radius: 25px;
+    border: solid black 1px;
+    padding: 20px;
+}

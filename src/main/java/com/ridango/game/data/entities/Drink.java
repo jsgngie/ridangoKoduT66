@@ -1,9 +1,6 @@
 package com.ridango.game.data.entities;
 
-import lombok.AccessLevel;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,7 +25,8 @@ public class Drink {
     private String strInstructions;
     private String strDrinkThumb;
 
-    @OneToMany(mappedBy = "drink", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "drinkId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
     private List<Ingredient> ingredients;
 
     private Boolean isGuessed = false;

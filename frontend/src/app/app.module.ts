@@ -8,12 +8,18 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameComponent } from './game/game.component';
 import { ApiService } from './api.service';
+import { HighscoresComponent } from './highscores/highscores.component';
+import { IngredientHintComponent } from './ingredient-hint/ingredient-hint.component';
+import { ImageHintComponent } from './image-hint/image-hint.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartComponent,
-    GameComponent
+    GameComponent,
+    HighscoresComponent,
+    IngredientHintComponent,
+    ImageHintComponent
   ],
   imports: [
     BrowserModule,

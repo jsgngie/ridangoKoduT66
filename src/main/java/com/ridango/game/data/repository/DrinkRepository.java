@@ -1,6 +1,7 @@
 package com.ridango.game.data.repository;
 
 import com.ridango.game.data.entities.Drink;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface DrinkRepository extends JpaRepository<Drink, Long> {
-    @Query(value = "SELECT * FROM drinks WHERE is_guessed = false ORDER BY RANDOM() LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM drinks d WHERE d.is_guessed = false ORDER BY RAND() LIMIT 1", nativeQuery = true)
     Optional<Drink> fetchRandomDrink();
 
     @Modifying

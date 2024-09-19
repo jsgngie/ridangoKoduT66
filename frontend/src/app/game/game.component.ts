@@ -2,6 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/cor
 import { ApiService } from '../api.service';
 import { trigger, transition, style, animate, keyframes, AnimationEvent} from '@angular/animations';
 import { Router } from '@angular/router';
+import { IngredientHintComponent } from '../ingredient-hint/ingredient-hint.component';
 
 @Component({
   selector: 'app-game',
@@ -33,12 +34,17 @@ import { Router } from '@angular/router';
   ]
 })
 export class GameComponent implements AfterViewInit {
+  
 
   hiddenString: string | null = null;
   remainingGuesses: number | null = null;
   highScore: number | null = null;
   isShaking: boolean = false;
   instructions: string | null = null;
+  showHint: boolean = false;
+  showImage: boolean = false;
+  showIngredients: boolean = false;
+  showGlass: boolean = false;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
@@ -116,13 +122,19 @@ export class GameComponent implements AfterViewInit {
           this.getRemainingGuesses();
           this.getHighscore();
           this.getInstructions();
-
+          this.resetHints();
+          this.showHint = false;
 
         } else {
 
           this.getRemainingGuesses();
           drinkInput.value = '';
           this.getHiddenString();
+
+          if (Math.random() < 0.33) {
+            console.log("hit")
+            this.showHint = true;
+          }
         }
       },
       error: (error) => {
@@ -138,5 +150,28 @@ export class GameComponent implements AfterViewInit {
   endGame() {
     this.apiService.endGame();
     this.router.navigate(['/']);
+  }
+
+  selectImage() {
+    this.showHint = false;
+    this.showImage = true;
+  }
+
+  selectIngredients() {
+    this.showHint = false;
+    this.showIngredients = true;
+    console.log(this.showHint)
+    console.log(this.showIngredients)
+  }
+
+  selectGlass() {
+    this.showHint = false;
+    this.showGlass = true;
+  }
+
+  resetHints() {
+    this.showGlass = false;
+    this.showIngredients = false;
+    this.showImage = false;
   }
 }
